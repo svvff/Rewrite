@@ -30,3 +30,4 @@ if (parentIndex!== -1) {
   console.log('未找到名为“features”的属性父特征');
 }
   response.body = JSON.stringify(body);
+$done(response);
