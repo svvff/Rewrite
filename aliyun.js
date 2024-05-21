@@ -1,4 +1,4 @@
-var objc = JSON.parse(response.body);
+var objc = JSON.parse($response.body);
 for (let feature of objc.features) {
   feature.trialDuration = 999999999;
 }
