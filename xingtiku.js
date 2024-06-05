@@ -15,11 +15,28 @@
 hostname = mb.xinghengedu.com
 
 *******************************/
-
-var body = $response.body.replace(/vip":"\w+"/g,'vip":"true"')
-.replace(/name":"\w+"/g,'name":"永久会员"')
-.replace(/vipType":"\d+"/g,'vipType":"3"')
-.replace(/vipStatus":"\d+"/g,'vipStatus":"1"')
-.replace(/endTime":"\d+"/g,'endTime":"999999999"')
-.replace(/bindPhoneNumber":"\d+"/g,'bindPhoneNumber":"10086"')
-$done({ body });
+var objc = JSON.parse($response.body);
+for (let datas of objc.data) {
+  datas.vip = true;
+}
+for (let datas of objc.data) {
+  datas.username = "永久会员";
+}
+for (let datas of objc.data) {
+  datas.name = "永久会员";
+}
+for (let datas of objc.data) {
+  datas.vipType = "3";
+}
+for (let datas of objc.data) {
+  datas.vipStatus = "1";
+}
+for (let datas of objc.data) {
+  datas.endTime = 999999999;
+}
+for (let datas of objc.data) {
+  datas.bindPhoneNumber = "10086";
+}
+$done({
+    body : JSON.stringify(objc)
+});
