@@ -20,5 +20,6 @@ var body = $response.body.replace(/vip":"\w+"/g,'vip":"true"')
 .replace(/name":"\w+"/g,'name":"永久会员"')
 .replace(/vipType":"\d+"/g,'vipType":"3"')
 .replace(/vipStatus":"\d+"/g,'vipStatus":"1"')
+.replace(/endTime":"\d+"/g,'endTime":"999999999"')
 .replace(/bindPhoneNumber":"\d+"/g,'bindPhoneNumber":"10086"')
 $done({ body });
