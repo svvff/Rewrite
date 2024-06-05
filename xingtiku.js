@@ -8,7 +8,7 @@
 
 [rewrite_local]
 
-^https?:\/\/mb\.xinghengedu\.com\/api\/v5\.3\.0\/getUserByToken\.do url script-response-body https://raw.githubusercontent.com/svvff/Rewrite/main/xingtiku.js
+^https://mb.xinghengedu.com/api/v5.3.0/getUserByToken.do url script-response-body https://raw.githubusercontent.com/svvff/Rewrite/main/xingtiku.js
 
 
 [mitm]
