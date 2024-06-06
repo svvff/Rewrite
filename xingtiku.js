@@ -18,7 +18,8 @@ hostname = mobile.xinghengclass.com
 *******************************/
 
 var objc = JSON.parse($response.body);
-    objc.data = {    
+
+objc.data = {    
     "img": "default",
     "code": 1,
     "gender": 1,
@@ -45,7 +46,8 @@ var objc = JSON.parse($response.body);
     "vipStatus": "1",
     "crmName": "",
     "username": "永久会员"
-  };
+};
+
 $done({
     body : JSON.stringify(objc)
 });
