@@ -15,7 +15,6 @@ hostname = mobile.xinghengclass.com
 
 *************************************/
 
-
 var objc = JSON.parse($response.body);
 
 objc.lists = {
