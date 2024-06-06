@@ -46,4 +46,6 @@ var objc = JSON.parse($response.body);
     "crmName": "",
     "username": "永久会员"
   };
-$done({body : JSON.stringify(objc)});
+$done({
+    body : JSON.stringify(objc)
+});
