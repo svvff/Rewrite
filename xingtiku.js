@@ -17,6 +17,7 @@ hostname = mobile.xinghengclass.com
 
 *******************************/
 var objc = JSON.parse($response.body);
+
     objc = {    
   "msg": "操作成功",
   "code": 200,
@@ -49,4 +50,5 @@ var objc = JSON.parse($response.body);
     "username": "永久会员"
   }
 }
+
 $done({body : JSON.stringify(objc)});
