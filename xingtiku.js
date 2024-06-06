@@ -16,6 +16,7 @@ https://raw.githubusercontent.com/svvff/Rewrite/main/xingtiku.js
 hostname = mobile.xinghengclass.com
 
 *******************************/
+
 var objc = JSON.parse($response.body);
     objc.data = {    
     "img": "default",
