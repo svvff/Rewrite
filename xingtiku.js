@@ -10,6 +10,7 @@
 [rewrite_local]
 
 ^https?://mobile.xinghengclass.com/api/v5.3.0/getUserByToken.do url script-response-body
+^https?://mobile.xinghengclass.com/notification/list.do url script-response-body
 https://raw.githubusercontent.com/svvff/Rewrite/main/xingtiku.js
 
 [mitm]
