@@ -9,7 +9,8 @@
 
 [rewrite_local]
 
-https://mobile.xinghengclass.com/api/v5.3.0/getUserByToken.do url script-response-body
+#星题库-解锁会员
+^https?://mobile.xinghengclass.com/api/v5.3.0/getUserByToken.do url script-response-body
 https://raw.githubusercontent.com/svvff/Rewrite/main/xingtiku.js
 
 [mitm]
