@@ -9,7 +9,6 @@
 
 [rewrite_local]
 
-#星题库-解锁会员
 ^https?://mobile.xinghengclass.com/api/v5.3.0/getUserByToken.do url script-response-body
 https://raw.githubusercontent.com/svvff/Rewrite/main/xingtiku.js
 
@@ -45,5 +44,5 @@ var objc = JSON.parse($response.body);
     "vipStatus": "1",
     "crmName": "",
     "username": "永久会员"
-  }
+  };
 $done({body : JSON.stringify(objc)});
