@@ -30,4 +30,12 @@ objc.data = {
     "username": "永久会员"
 };
 
+objc.lists = {
+  ...objc.lists,
+  "imgUrl": "",
+  "url": "",
+  "content": "",
+  "productType": "",
+};
+
 $done({body : JSON.stringify(objc)});
