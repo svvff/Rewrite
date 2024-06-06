@@ -30,4 +30,4 @@ objc.data = {
     "username": "永久会员"
 };
 
-$done({body : JSON.stringify(chxm1023)});
+$done({body : JSON.stringify(objc)});
