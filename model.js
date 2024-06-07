@@ -11,7 +11,6 @@
 
 https?:\/\/.*\.lanjiyin\.com\.cn url script-response-body https://raw.githubusercontent.com/89996462/Quantumult-X/main/ycdz/lanjiyin.js
 
-
 [mitm]
 hostname = *.lanjiyin.com.cn
 
