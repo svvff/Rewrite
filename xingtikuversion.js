@@ -7,8 +7,7 @@
 **************************************
 
 [rewrite_local]
-^https?://mobile.xinghengclass.com/mobileUser/v2/versionList.do
-https://raw.githubusercontent.com/svvff/Rewrite/main/xingtikuversion.js
+https?://mobile.xinghengclass.com/mobileUser/v2/versionList.do https://raw.githubusercontent.com/svvff/Rewrite/main/xingtikuversion.js
 
 [mitm]
 hostname = mobile.xinghengclass.com
