@@ -19,11 +19,11 @@ var objc = JSON.parse($response.body);
 
 objc[0] = {
     "apkName": "hello world!",
-    "apkVersion": "5.36.0",
-    "apkVersionCode": 53600,
+    "apkVersion": "1.00.0",
+    "apkVersionCode": 10000,
     "apkVersionDesc": "版本拦截测试！",
     "apkVersionType": 1,
-    "id": 966,
+    "id": 1,
     "productType": "xingtiku_ios"
 };
 
