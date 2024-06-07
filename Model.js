@@ -7,9 +7,12 @@
 
 *******************************
 
+#!name=蓝基因
+#!desc=解锁会员
+
 [rewrite_local]
 
-https?:\/\/.*\.lanjiyin\.com\.cn url script-response-body https://raw.githubusercontent.com/89996462/Quantumult-X/main/ycdz/lanjiyin.js
+^https?:\/\/.*\.lanjiyin\.com\.cn url script-response-body https://raw.githubusercontent.com/89996462/Quantumult-X/main/ycdz/lanjiyin.js
 
 [mitm]
 hostname = *.lanjiyin.com.cn
