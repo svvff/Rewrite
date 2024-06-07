@@ -7,7 +7,11 @@
 **************************************
 
 [rewrite_local]
-https?://mobile.xinghengclass.com/mobileUser/v2/versionList.do https://raw.githubusercontent.com/svvff/Rewrite/main/xingtikuversion.js
+
+#!name=星题库
+#!desc=屏蔽更新弹窗
+
+^https?://mobile.xinghengclass.com/mobileUser/v2/versionList.do url script-response-body https://raw.githubusercontent.com/svvff/Rewrite/main/XingTikuVersion.js
 
 [mitm]
 hostname = mobile.xinghengclass.com
