@@ -11,7 +11,7 @@
 #!name=蓝基因
 #!desc=屏蔽首次启动广告弹窗
 
-^https?://https://tk.lanjiyin.com.cn/ad/getAdList url script-response-body https://raw.githubusercontent.com/svvff/Rewrite/main/LanJiyin.js
+^https?://https://tk.lanjiyin.com.cn/ad/getAdList url script-response-body https://raw.githubusercontent.com/svvff/Rewrite/main/LanJiyinAds.js
 
 [mitm]
 hostname = tk.lanjiyin.com.cn
