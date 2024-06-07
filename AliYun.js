@@ -7,6 +7,9 @@
 
 *******************************
 
+#!name=阿里云盘
+#!desc=解锁高清画质+倍速播放
+
 [rewrite_local]
 https:\/\/api\.alipan\.com\/business\/v1\.0\/users\/feature\/list$ url script-response-body https://raw.githubusercontent.com/svvff/Rewrite/main/AliYun.js
 
