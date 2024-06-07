@@ -18,7 +18,6 @@ hostname = mobile.xinghengclass.com
 var objc = JSON.parse($response.body);
 
 objc = {
-  {
     "apkName": "hello world!",
     "apkVersion": "5.36.0",
     "apkVersionCode": 53600,
@@ -26,7 +25,6 @@ objc = {
     "apkVersionType": 1,
     "id": 966,
     "productType": "xingtiku_ios"
-  }
 };
 
 $done({body : JSON.stringify(objc)});
