@@ -9,7 +9,10 @@
 
 [rewrite_local]
 
-https?://mobile.xinghengclass.com/api/v5.3.0/getUserByToken.do url script-response-body https://raw.githubusercontent.com/svvff/Rewrite/main/xingtiku.js
+#!name=星题库
+#!desc=解锁会员
+
+^https?://mobile.xinghengclass.com/api/v5.3.0/getUserByToken.do url script-response-body https://raw.githubusercontent.com/svvff/Rewrite/main/XingTiku.js
 
 [mitm]
 hostname = mobile.xinghengclass.com
