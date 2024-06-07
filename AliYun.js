@@ -9,7 +9,7 @@
 
 [rewrite_local]
 
-^https:\/\/api\.alipan\.com\/business\/v1\.0\/users\/feature\/list$,script-path=https://raw.githubusercontent.com/svvff/Rewrite/main/aliyun.js
+^https:\/\/api\.alipan\.com\/business\/v1\.0\/users\/feature\/list$ url script-response-body https://raw.githubusercontent.com/svvff/Rewrite/main/AliYun.js
 
 [mitm]
 hostname = api.alipan.com
