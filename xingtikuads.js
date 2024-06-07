@@ -7,8 +7,7 @@
 **************************************
 
 [rewrite_local]
-^https?://mobile.xinghengclass.com/notification/list.do
-https://raw.githubusercontent.com/svvff/Rewrite/main/xingtikuads.js
+https?://mobile.xinghengclass.com/notification/list.do https://raw.githubusercontent.com/svvff/Rewrite/main/xingtikuads.js
 
 [mitm]
 hostname = mobile.xinghengclass.com
