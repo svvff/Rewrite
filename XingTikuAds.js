@@ -6,8 +6,11 @@
 
 **************************************
 
+#!name=星题库
+#!desc=去除首次启动广告
+
 [rewrite_local]
-https?://mobile.xinghengclass.com/notification/list.do https://raw.githubusercontent.com/svvff/Rewrite/main/xingtikuads.js
+^https?://mobile.xinghengclass.com/notification/list.do url script-response-body https://raw.githubusercontent.com/svvff/Rewrite/main/XingTikuAds.js
 
 [mitm]
 hostname = mobile.xinghengclass.com
