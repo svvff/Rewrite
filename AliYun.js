@@ -9,7 +9,7 @@
 
 [rewrite_local]
 
-https:\/\/api\.alipan\.com\/business\/v1\.0\/users\/feature\/list$,script-path=https://raw.githubusercontent.com/svvff/Rewrite/main/aliyun.js
+^https:\/\/api\.alipan\.com\/business\/v1\.0\/users\/feature\/list$,script-path=https://raw.githubusercontent.com/svvff/Rewrite/main/aliyun.js
 
 [mitm]
 hostname = api.alipan.com
@@ -17,6 +17,7 @@ hostname = api.alipan.com
 *******************************/
 
 var objc = JSON.parse($response.body);
+
 for (let feature of objc.features) {
   feature.trialDuration = 999999999;
 }
@@ -47,6 +48,7 @@ if (parentIndex!== -1) {
 } else {
   console.log('未找到名为“features”的属性父特征');
 }
+
 $done({
     body : JSON.stringify(objc)
 });
