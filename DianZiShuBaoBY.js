@@ -8,7 +8,7 @@
 
 [rewrite_local]
 
-#!name=医学电子书包
+#!name=医学电子书包-北院
 #!desc=定位北院
 
 ^https?://dualstack-restios.amap.com/v3/geocode/regeo url script-response-body https://raw.githubusercontent.com/svvff/Rewrite/main/DianZiShuBaoBY.js
