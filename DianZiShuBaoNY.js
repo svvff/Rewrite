@@ -47,7 +47,7 @@ objc = {
     ]
   },
   "info": "OK",
-  "infocode": "10000
+  "infocode": "10000"
 };
 
 $done({body : JSON.stringify(objc)});
