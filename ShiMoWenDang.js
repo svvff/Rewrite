@@ -12,7 +12,7 @@
 
 [rewrite_local]
 
-^https?:\/\/shimo\.im\/lizard-api\/(users|files\/*)\/me url script-response-body https://raw.githubusercontent.com/svvff/Rewrite/main/ShiMoWenDang.js
+^https?:\/\/shimo\.im\/lizard-api\/(users\/me|files\/*) url script-response-body https://raw.githubusercontent.com/svvff/Rewrite/main/ShiMoWenDang.js
 
 [mitm]
 hostname = shimo.im
@@ -21,52 +21,16 @@ hostname = shimo.im
 
 var body = JSON.parse($response.body);
 
-const vipa = /users/;
+const vipa = /users\/me/;
 const vipb = /files\/*/;
 
 if(vipa.test($request.url)){
-  body.accountMetadata = {
-  "isExpired": false,
-    
-    "isDingtalk": true, 
-    
-    "isWework": true, 
-    
-    "isEnterprise": true, 
-    
-    "isFreeEnterprise": true,
-    
-    "expiredAt": { 
-      
-      "seconds": 2099090900,  
-      
-      "nanos": 607982830 
-    
-    }, 
-    
-    "isTrial": true, 
-    
-    "isPersonalPremium": true,   
-    
-    "isEnterprisePremium": true, 
-    
-    "isEnterpriseLight": true,  
-    
-    "editionId": 6 
-  };
-body.membership = {
-      "accountTypeExpiredAt": "0001-01-01T00:00:00.000Z",  
-  
-  "accountType": "personal_premium",  
-  
-  "accountTypeCreatedAt": "0001-01-01T00:00:00.000Z",    
-  
-  "isEnterprisePremium": true,   
-  
-  "isExpired": false,  
-  
-  "isNewDing": false   
-   };
+  body = {
+  ...body,
+    "accountMetadata": {    "isExpired": false,     "isDingtalk": true,     "isWework": true,     "isEnterprise": true,     "isFreeEnterprise": true,     "expiredAt": {      "seconds": 2099090900,       "nanos": 607982830     },     "isTrial": true,     "isPersonalPremium": true,     "isEnterprisePremium": true,     "isEnterpriseLight": true,     "editionId": 6   }, 
+  "membership": {    "accountTypeExpiredAt": "0001-01-01T00:00:00.000Z",     "accountType": "personal_premium",     "accountTypeCreatedAt": "0001-01-01T00:00:00.000Z",     "isEnterprisePremium": true,     "isExpired": false,     "isNewDing": false   }
+};
+
 }
 if(vipb.test($request.url)){
   body = {
