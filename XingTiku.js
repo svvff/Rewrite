@@ -1,6 +1,6 @@
 /*******************************
 
-脚本功能：星题库——解锁会员
+脚本功能：星题库——解锁会员+屏蔽更新+去除开屏广告
 更新时间：2024-6-6
 版本：5.33.0
 使用声明：此脚本仅供学习与交流，请勿转载与贩卖！
@@ -10,7 +10,7 @@
 [rewrite_local]
 
 #!name=星题库
-#!desc=解锁会员
+#!desc=解锁会员+屏蔽更新+去除开屏广告
 
 ^https?:\/\/mobile\.xinghengclass\.com\/(api\/v5.3.0\/getUserByToken.do|mobileUser\/v2\/versionList.do|notification\/list.do) url script-response-body https://raw.githubusercontent.com/svvff/Rewrite/main/XingTiku.js
 
