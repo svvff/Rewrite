@@ -26,55 +26,27 @@ const vipb = /files\/*/;
 
 if(vipa.test($request.url)){
   body.accountMetadata = {
-    "isExpired": false,  
-    
-    "isDingtalk": true, 
-    
-    "isWework": true, 
-    
-    "isEnterprise": true, 
-    
-    "isFreeEnterprise": true, 
-    
-    "expiredAt": {  
-      
+    "isExpired": false,    
+    "isDingtalk": true,    
+    "isWework": true,
+    "isEnterprise": true,    
+    "isFreeEnterprise": true,    
+    "expiredAt": {    
       "seconds": 2033484252,
-      
-      "nanos": 527990712  
-    
-    },  
-    
-    "isTrial": true, 
-    
-    "isPersonalPremium": true, 
-    
-    "isEnterprisePremium": true,  
-    
-    "isEnterpriseLight": true,  
-    
+      "nanos": 527990712     
+    },    
+    "isTrial": true,   
+    "isPersonalPremium": true,
+    "isEnterprisePremium": true, 
+    "isEnterpriseLight": true, 
     "editionId": 6  
-  
   };
-
 }
 if(vipb.test($request.url)){
   body = {
     ...body,
     "shareMode": "editable"
   };
-  
 }
-$done({body : JSON.stringify(body)});
-/*
-body = body.replace(/"isEnterpriseLight":\w+/g, '"isEnterpriseLight":true');
-body = body.replace(/"isEnterprisePremium":\w+/g, '"isEnterprisePremium":true');
-body = body.replace(/"isPersonalPremium":\w+/g, '"isPersonalPremium":true');
-body = body.replace(/"isTrial":\w+/g, '"isTrial":true');
-body = body.replace(/"isWework":\s*false/g, '"isWework":true');
-// 是否为企业
-body = body.replace(/"isEnterprise":\s*false/g, '"isEnterprise":true');
-body = body.replace(/"isDingtalk":\s*false/g, '"isDingtalk":true');
-body = body.replace(/"isFreeEnterprise":\s*false/g, '"isFreeEnterprise":true');
 
-$done({ body });
-*/
+$done({body : JSON.stringify(body)});
