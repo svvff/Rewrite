@@ -27,8 +27,7 @@ const vipb = /files\/*/;
 if(vipa.test($request.url)){
   body = {
   ...body,
-    "accountMetadata": {    "isExpired": false,     "isDingtalk": true,     "isWework": true,     "isEnterprise": true,     "isFreeEnterprise": true,     "expiredAt": {      "seconds": 4092566400,       "nanos": 607982830     },     "isTrial": false,     "isPersonalPremium": true,     "isEnterprisePremium": true,     "isEnterpriseLight": true,     "editionId": 6   }, 
-  "membership": {    "accountTypeExpiredAt": "2099-09-09T00:00:00.000Z",     "accountType": "personal_premium",     "accountTypeCreatedAt": "0001-01-01T00:00:00.000Z",     "isEnterprisePremium": true,     "isExpired": false,     "isNewDing": false   }
+    "accountMetadata": {    "isExpired": false,     "isDingtalk": true,     "isWework": true,     "isEnterprise": true,     "isFreeEnterprise": true,     "expiredAt": {      "seconds": 4092566400,       "nanos": 607982830     },     "isTrial": true,     "isPersonalPremium": true,     "isEnterprisePremium": true,     "isEnterpriseLight": true,     "editionId": 6  } 
 };
 
 }
