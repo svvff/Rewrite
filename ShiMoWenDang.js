@@ -25,10 +25,36 @@ const vipa = /users\/me?/;
 const vipb = /files\/*/;
 
 if(vipa.test($request.url)){
-  body = {
-  ...body,
-    "accountMetadata": {    "isExpired": false,     "isDingtalk": true,     "isWework": true,     "isEnterprise": true,     "isFreeEnterprise": true,     "expiredAt": {      "seconds": 2033484252,       "nanos": 607982830     },     "isTrial": true,     "isPersonalPremium": true,     "isEnterprisePremium": true,     "isEnterpriseLight": true,     "editionId": 6  } 
-};
+  body.accountMetadata = {
+    "isExpired": false,  
+    
+    "isDingtalk": true, 
+    
+    "isWework": true, 
+    
+    "isEnterprise": true, 
+    
+    "isFreeEnterprise": true, 
+    
+    "expiredAt": {  
+      
+      "seconds": 2033484252,
+      
+      "nanos": 527990712  
+    
+    },  
+    
+    "isTrial": true, 
+    
+    "isPersonalPremium": true, 
+    
+    "isEnterprisePremium": true,  
+    
+    "isEnterpriseLight": true,  
+    
+    "editionId": 6  
+  
+  };
 
 }
 if(vipb.test($request.url)){
