@@ -12,7 +12,7 @@
 #!name=星题库
 #!desc=解锁会员
 
-^https?:\/\/mobile\.xinghengclass\.com\/(api\/v5\.3\.0\/getUserByToken\.do|mobileUser\/v2\/versionList\.do|notification\/list\.do) url script-response-body https://raw.githubusercontent.com/svvff/Rewrite/main/XingTiku.js
+^https?:\/\/mobile\.xinghengclass\.com\/(api\/v5.3.0\/getUserByToken.do|mobileUser\/v2\/versionList.do|notification\/list.do) url script-response-body https://raw.githubusercontent.com/svvff/Rewrite/main/XingTiku.js
 
 [mitm]
 hostname = mobile.xinghengclass.com
@@ -21,9 +21,9 @@ hostname = mobile.xinghengclass.com
 
 var objc = JSON.parse($response.body);
 
-const ad = /notification\/list\.do/;
-const version = /mobileUser\/v2\/versionList\.do/;
-const vip = /api\/v5\.3\.0\/getUserByToken\.do/;
+const ad = /notification\/list.do/;
+const version = /mobileUser\/v2\/versionList.do/;
+const vip = /api\/v5.3.0\/getUserByToken.do/;
 
 if(ad.test($request.url)){
   objc.lists = {
