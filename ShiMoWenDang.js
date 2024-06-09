@@ -21,7 +21,7 @@ hostname = shimo.im
 
 var body = JSON.parse($response.body);
 
-const vipa = /users\/me/;
+const vipa = /users\/me?/;
 const vipb = /files\/*/;
 
 if(vipa.test($request.url)){
