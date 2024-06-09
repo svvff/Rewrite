@@ -59,16 +59,5 @@ if(vip.test($request.url)){
     "username": "永久会员"
 };
 }
-/*
-objc.data = {
-    ...objc.data,
-    "vip": true,
-    "vipType": "3",
-    "bindPhoneNumber": "10086",
-    "name": "永久会员",
-    "endTime": 999999999,
-    "vipStatus": "1",
-    "username": "永久会员"
-};
-*/
+
 $done({body : JSON.stringify(objc)});
