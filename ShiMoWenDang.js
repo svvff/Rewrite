@@ -35,7 +35,7 @@ if(vipa.test($request.url)){
       "seconds":2099090900,
       "nanos": 527990712     
     },    
-    "isTrial": false,   
+    "isTrial": true,   
     "isPersonalPremium": true,
     "isEnterprisePremium": true, 
     "isEnterpriseLight": true, 
@@ -46,7 +46,7 @@ if(vipb.test($request.url)){
   body = {
     ...body,
     "shareMode": "editable",
-    "user": {    "id": 88888888,     "name": "",     "avatar": "https://as.smgv.cn/static/unmd5/default-avatar-moke.2.png",     "email": "10086@163.com",     "accountMetadata": {      "isExpired": false,       "isDingtalk": true,       "isWework": true,       "isEnterprise": true,       "isFreeEnterprise": true,       "expiredAt": {        "seconds": 2099090900,         "nanos": 131380889       },       "isTrial": false,       "isPersonalPremium": true,       "isEnterprisePremium": true,       "isEnterpriseLight": true,       "startedAt": {        "seconds": -62135596800       },       "editionId": 6,       "lastMembershipExpiredAt": {        "seconds": -62135596800       },       "lastMembershipEditionId": 0     }   }
+    "user": {    "id": 88888888,     "name": "",     "avatar": "https://as.smgv.cn/static/unmd5/default-avatar-moke.2.png",     "email": "10086@163.com",     "accountMetadata": {      "isExpired": false,       "isDingtalk": true,       "isWework": true,       "isEnterprise": true,       "isFreeEnterprise": true,       "expiredAt": {        "seconds": 2099090900,         "nanos": 131380889       },       "isTrial": true,       "isPersonalPremium": true,       "isEnterprisePremium": true,       "isEnterpriseLight": true,       "startedAt": {        "seconds": -62135596800       },       "editionId": 6,       "lastMembershipExpiredAt": {        "seconds": -62135596800       },       "lastMembershipEditionId": 0     }   }
   };
 }
 
