@@ -32,7 +32,7 @@ if(vipa.test($request.url)){
     "isEnterprise": true,    
     "isFreeEnterprise": true,    
     "expiredAt": {    
-      "seconds": 2033484252,
+      "seconds":2099090900,
       "nanos": 527990712     
     },    
     "isTrial": true,   
@@ -45,7 +45,8 @@ if(vipa.test($request.url)){
 if(vipb.test($request.url)){
   body = {
     ...body,
-    "shareMode": "editable"
+    "shareMode": "editable",
+    "user": {    "id": 88888888,     "name": "+861008610860",     "avatar": "https://as.smgv.cn/static/unmd5/default-avatar-moke.2.png",     "email": "10086@163.com",     "accountMetadata": {      "isExpired": false,       "isDingtalk": true,       "isWework": true,       "isEnterprise": true,       "isFreeEnterprise": true,       "expiredAt": {        "seconds": 2099090900,         "nanos": 131380889       },       "isTrial": true,       "isPersonalPremium": true,       "isEnterprisePremium": true,       "isEnterpriseLight": true,       "startedAt": {        "seconds": -62135596800       },       "editionId": 6,       "lastMembershipExpiredAt": {        "seconds": -62135596800       },       "lastMembershipEditionId": 0     }   }
   };
 }
 
