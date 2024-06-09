@@ -35,7 +35,7 @@ if(ad.test($request.url)){
 };
 }
 
-if(version.test($request.url)){
+if(vip.test($request.url)){
   objc[0] = {
     "apkName": "hello world!",
     "apkVersion": "1.00.0",
