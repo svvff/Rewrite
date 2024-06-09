@@ -26,4 +26,4 @@ body = body.replace(/"has_red_dot":\w+/g, '"has_red_dot":false')
 .replace(/"red_packet_author_red_dot_count":\d+/g, '"red_packet_author_red_dot_count":0')
 .replace(/"red_dot_time_ms":\w+/g, '"red_dot_time_ms":null');
 
-$done({ body };
+$done({ body });
