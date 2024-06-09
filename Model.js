@@ -12,7 +12,7 @@
 
 [rewrite_local]
 
-^https?:\/\/.*\.lanjiyin\.com\.cn url script-response-body https://raw.githubusercontent.com/89996462/Quantumult-X/main/ycdz/lanjiyin.js
+^https?:\/\/.*\.lanjiyin\.com\.cn url script-response-body https://raw.githubusercontent.com/svvff/Rewrite/main/Model.js
 
 [mitm]
 hostname = *.lanjiyin.com.cn
