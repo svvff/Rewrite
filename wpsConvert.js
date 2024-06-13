@@ -20,9 +20,9 @@ hostname = icdcapi.wps.cn
 
 var objc = JSON.parse($response.body);
 
-  if (objc.hasOwnProperty('result')) {
+  if (objc.result.result_files[0].hasOwnProperty('url')) {
    let res = objc.result.result_files[0].url;
-   $persistentStore.write(res, 'wps')
+   $persistentStore.write(res, 'wps');
    $notification.post('转换结果', '转换成功', '请前往loon输入wps获取下载链接！');
   }
 
