@@ -10,7 +10,7 @@
 **************************************
 
 [rewrite_local]
-^https?:\/\/lepai-api\.faceqianyan\.com\/(apple\/product|account\/profile|faceFusion|toolCollection) url script-response-body https://raw.githubusercontent.com/svvff/Rewrite/main//lepai.js
+^https?:\/\/lepai-api\.faceqianyan\.com\/(apple\/product|account\/profile|faceFusion|toolCollection) url script-response-body https://raw.githubusercontent.com/svvff/Rewrite/main//LePai.js
 
 [mitm]
 hostname = lepai-api.faceqianyan.com
