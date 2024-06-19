@@ -24,13 +24,13 @@ const ad = /f​​​e​​​e​​​d​​​\/​​​i​​​n​​
 const ads = /s​​​p​​​l​​​a​​​s​​​h\​​​/​​​s​​​h​​​o​​​w*/;
 
 if(ad.test($request.url)){
-  objc.lists = {
+  objc = {
 
 };
 }
 
 if(ads.test($request.url)){
-  objc[0] = {
+  objc = {
 
 };
 }
