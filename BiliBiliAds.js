@@ -11,7 +11,7 @@
 #!name=哔哩哔哩
 #!desc=屏蔽首次启动广告弹窗
 
-^https?://​​​a​​​p​​​p​​​.​​​b​​​i​​​l​​​i​​​b​​​i​​​l​​​i​​​.​​​c​​​o​​​m​​​/​​​x​​​/​​​v​​​2​​​​/(​​​f​​​e​​​e​​​d​​​\/​​​i​​​n​​​d​​​e​​​x|s​​​p​​​l​​​a​​​s​​​h\​​​/​​​s​​​h​​​o​​​w) url script-response-body https://raw.githubusercontent.com/svvff/Rewrite/main/BiliBiliAds.js
+^https?://​​​a​​​p​​​p​​​.​​​b​​​i​​​l​​​i​​​b​​​i​​​l​​​i​​​.​​​c​​​o​​​m​​​/​​​x​​​/​​​v​​​2​​​​/(​​​f​​​e​​​e​​​d​​​\/​​​i​​​n​​​d​​​e​​​x*|s​​​p​​​l​​​a​​​s​​​h\​​​/​​​s​​​h​​​o​​​w*) url script-response-body https://raw.githubusercontent.com/svvff/Rewrite/main/BiliBiliAds.js
 
 [mitm]
 hostname = a​​​p​​​p​​​.​​​b​​​i​​​l​​​i​​​b​​​i​​​l​​​i​​​.​​​c​​​o​​​m​​​
