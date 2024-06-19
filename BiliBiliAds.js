@@ -20,8 +20,19 @@ hostname = a​​​p​​​p​​​.​​​b​​​i​​​l​​�
 
 var objc = JSON.parse($response.body);
 
-objc = {
+const ad = /f​​​e​​​e​​​d​​​\/​​​i​​​n​​​d​​​e​​​x*/;
+const ads = /s​​​p​​​l​​​a​​​s​​​h\​​​/​​​s​​​h​​​o​​​w*/;
+
+if(ad.test($request.url)){
+  objc.lists = {
 
 };
+}
+
+if(ads.test($request.url)){
+  objc[0] = {
+
+};
+}
 
 $done({body : JSON.stringify(objc)});
