@@ -18,7 +18,6 @@
 
 hostname = api2.mubu.com
 
-
 *******************************/
 
 var body = $response.body.replace(/vipEndDate":""/g,'vipEndDate":"99999999"')
