@@ -11,7 +11,7 @@
 #!name=医学电子书包-北院
 #!desc=定位北院
 
-^https?://restios.amap.com/v3/geocode/regeo? url script-response-body https://raw.githubusercontent.com/svvff/Rewrite/main/DianZiShuBaoBY.js
+^https?://*restios.amap.com/v3/geocode/regeo url script-response-body https://raw.githubusercontent.com/svvff/Rewrite/main/DianZiShuBaoBY.js
 
 [mitm]
 hostname = *restios.amap.com
