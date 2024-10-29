@@ -26,8 +26,12 @@ const vip = /users\/vipInfo/;
 
 if(ad.test($request.url)){
   objc.date = {
-    ...objc.data,
-    "size": "无限储存", 
+    "origin_size": 0,
+    "size": "无限储存",
+    "origin_used_size": 0,
+    "used_size": "0B",
+    "timestamp": 0,
+    "time": "",
     "is_anonymous": true,
     "vip_end_time": 999999999
 };
