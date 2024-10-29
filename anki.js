@@ -25,7 +25,7 @@ const ad = /clouds\/current/;
 const vip = /users\/vipInfo/;
 
 if(ad.test($request.url)){
-  objc.date = {
+  objc.data = {
     "origin_size": 0,
     "size": "无限储存",
     "origin_used_size": 0,
