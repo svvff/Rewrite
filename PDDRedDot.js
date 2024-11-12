@@ -12,7 +12,7 @@
 
 [rewrite_local]
 
-^https?:\/\/api-shb1.pinduoduo.com/api/light/live_tab/query/live_red_dot$ url script-response-body https://raw.githubusercontent.com/svvff/Rewrite/main/PDDRedDot.js
+^https?:\/\/api-shb1.pinduoduo.com/api/light/live_tab/query/live_red_dot url script-response-body https://raw.githubusercontent.com/svvff/Rewrite/main/PDDRedDot.js
 
 [mitm]
 hostname = *shb1.pinduoduo.com
