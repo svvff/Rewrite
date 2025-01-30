@@ -12,7 +12,7 @@
 
 [rewrite_local]
 https://
-^https?:\/\/api\.yikaobang\.com\.cn/index.php\/version\/version\/check url script-response-body https://raw.githubusercontent.com/svvff/Rewrite/main/YiKaoBangUpdate.js
+^https?:\/\/api\.yikaobang\.com\.cn/index.php\/version\/version\/check url script-response-body https://raw.githubusercontent.com/svvff/Rewrite/main/YiKaoBang.js
 
 [mitm]
 hostname = *.yikaobang.com.cn
