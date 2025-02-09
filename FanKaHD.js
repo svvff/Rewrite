@@ -21,6 +21,6 @@ hostname = service.ghzb.jxyunge.com
 
 var body = $response.body;
 
-body = body.replace(/"money":\d+/g,'"money":999');
+body = body.replace(/"money":\d+/g,'"money":"999"');
 
 $done({ body });
