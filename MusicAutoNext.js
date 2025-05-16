@@ -1,7 +1,7 @@
 // ==UserScript==
-// @name         循环监听进度条自动切歌
+// @name         自动切歌
 // @namespace    http://tampermonkey.net/
-// @version      0.6
+// @version      0.8
 // @description  持续监听进度条，支持多首歌曲循环切歌
 // @author       Your Name
 // @match        *://www.qqmp3.vip/*
