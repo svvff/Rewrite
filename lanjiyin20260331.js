@@ -18,7 +18,7 @@
  * ***************************************************
 
  [rewrite_local]
- ^https?:\/\/(?:edu|user)\.lezaitizhong\.com\/(shop|vod|tiku|classify|user(?:\/my)?)\/(?:goods|class_list|getclassifychapter|get_question_media|sheet|get_collection_list|get_course_info|get_cate_vod_list|getuserinfo|get_user_info|get_qtt_info|lecture(?:\/.*)?)(?:\/.*)? url script-response-body https://raw.githubusercontent.com/iosrxwy/Rewrite/main/lanjiyin.js
+ ^https?:\/\/(?:edu|user)\.lezaitizhong\.com\/(shop|vod|tiku|classify|user(?:\/my)?)\/(?:goods|class_list|getclassifychapter|get_question_media|sheet|get_collection_list|get_course_info|get_cate_vod_list|getuserinfo|get_user_info|get_qtt_info|lecture(?:\/.*)?)(?:\/.*)? url script-response-body https://raw.githubusercontent.com/svvff/Rewrite/refs/heads/main/lanjiyin20260331.js
 
  [mitm]
  hostname = *.lezaitizhong.com
