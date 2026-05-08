@@ -2,7 +2,6 @@
 
 脚本功能：电子书包——解锁题目权限 + 解锁课程观看 + 解锁设备限制
 更新时间：2026-5-9
-版本：v2.0 (适配小火箭)
 使用声明：此脚本仅供学习与交流，请勿转载与贩卖！
 
 *******************************/
@@ -12,8 +11,18 @@
 #!name=电子书包
 #!desc=解锁题目权限 + 解锁课程观看 + 解锁设备限制
 
-# 合并所有需要改写的URL为一条规则（通配符*已用.*表示）
-^https?:\/\/(exampass\.mvwchina\.com\/api\/examinationexercise\/apis\/exercises\/v2\/exercise\/list\/category|api\.imed\.org\.cn\/(books\/findBookList|books\/getAllPaperExamListByProductId|api\/article\/findCurrentPage|books\/v2|bindDevice)|school\.mvwchina\.com\/shop\/section\/getSectionListInfo).* url script-response-body https://raw.githubusercontent.com/svvff/Rewrite/main/ebook_unlock_all.js
+# 解锁题目权限（5个URL，通配符*已转义为.*）
+^https?:\/\/exampass\.mvwchina\.com\/api\/examinationexercise\/apis\/exercises\/v2\/exercise\/list\/category url script-response-body https://raw.githubusercontent.com/svvff/Rewrite/main/ebook_unlock_all.js
+^https?:\/\/api\.imed\.org\.cn\/books\/findBookList.* url script-response-body https://raw.githubusercontent.com/svvff/Rewrite/main/ebook_unlock_all.js
+^https?:\/\/api\.imed\.org\.cn\/books\/getAllPaperExamListByProductId.* url script-response-body https://raw.githubusercontent.com/svvff/Rewrite/main/ebook_unlock_all.js
+^https?:\/\/api\.imed\.org\.cn\/api\/article\/findCurrentPage.* url script-response-body https://raw.githubusercontent.com/svvff/Rewrite/main/ebook_unlock_all.js
+^https?:\/\/api\.imed\.org\.cn\/books\/v2.* url script-response-body https://raw.githubusercontent.com/svvff/Rewrite/main/ebook_unlock_all.js
+
+# 解锁课程观看
+^https?:\/\/school\.mvwchina\.com\/shop\/section\/getSectionListInfo.* url script-response-body https://raw.githubusercontent.com/svvff/Rewrite/main/ebook_unlock_all.js
+
+# 解锁设备限制
+^https?:\/\/api\.imed\.org\.cn\/bindDevice.* url script-response-body https://raw.githubusercontent.com/svvff/Rewrite/main/ebook_unlock_all.js
 
 [mitm]
 hostname = exampass.mvwchina.com, api.imed.org.cn, school.mvwchina.com
@@ -21,17 +30,15 @@ hostname = exampass.mvwchina.com, api.imed.org.cn, school.mvwchina.com
 *******************************/
 
     /*******************************
-脚本功能：电子书包——解锁题目权限 + 课程观看 + 设备限制
+电子书包——解锁题目权限 + 课程观看 + 设备限制
 *******************************/
 
 var obj = JSON.parse($response.body);
 
-// 定义各功能对应的URL正则（只匹配路径部分，因为域名已在rewrite中限定）
 const quiz = /exampass\.mvwchina\.com\/api\/examinationexercise\/apis\/exercises\/v2\/exercise\/list\/category|api\.imed\.org\.cn\/(books\/findBookList|books\/getAllPaperExamListByProductId|api\/article\/findCurrentPage|books\/v2)/;
 const course = /school\.mvwchina\.com\/shop\/section\/getSectionListInfo/;
 const device = /api\.imed\.org\.cn\/bindDevice/;
 
-// ① 解锁题目权限（递归修改JSON中所有需要改的字段）
 if (quiz.test($request.url)) {
     function modifyQuiz(obj) {
         if (!obj || typeof obj !== 'object') return;
@@ -48,10 +55,8 @@ if (quiz.test($request.url)) {
         }
     }
     modifyQuiz(obj);
-    console.log("✅ 电子书包-题目权限：已解锁");
-}
-// ② 解锁课程观看
-else if (course.test($request.url)) {
+    console.log("✅ 题目权限已解锁");
+} else if (course.test($request.url)) {
     function modifyCourse(obj) {
         if (!obj || typeof obj !== 'object') return;
         if (Array.isArray(obj)) {
@@ -66,13 +71,11 @@ else if (course.test($request.url)) {
         }
     }
     modifyCourse(obj);
-    console.log("✅ 电子书包-课程观看：已解锁");
-}
-// ③ 解锁设备限制
-else if (device.test($request.url)) {
+    console.log("✅ 课程观看已解锁");
+} else if (device.test($request.url)) {
     if (obj && typeof obj === 'object' && obj.hasOwnProperty('result') && obj.result === false) {
         obj.result = true;
-        console.log("✅ 电子书包-设备限制：已解锁");
+        console.log("✅ 设备限制已解锁");
     }
 }
 
