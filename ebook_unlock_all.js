@@ -1,103 +1,79 @@
-#!name=电子书包-解锁合集
-#!desc=解锁题目权限、课程观看、设备限制
+/*******************************
 
-[script]
-电子书包-功能解锁 = type=response-pattern, pattern=^https:\/\/exampass\.mvwchina\.com, requires-body=1, script-path=https://raw.githubusercontent.com/svvff/Rewrite/main/ebook_unlock_all.js
-电子书包-功能解锁 = type=response-pattern, pattern=^https:\/\/api\.imed\.org\.cn, requires-body=1, script-path=https://raw.githubusercontent.com/svvff/Rewrite/main/ebook_unlock_all.js
-电子书包-功能解锁 = type=response-pattern, pattern=^https:\/\/school\.mvwchina\.com, requires-body=1, script-path=https://raw.githubusercontent.com/svvff/Rewrite/main/ebook_unlock_all.js
+脚本功能：电子书包——解锁题目权限 + 解锁课程观看 + 解锁设备限制
+更新时间：2026-5-9
+版本：v2.0 (适配小火箭)
+使用声明：此脚本仅供学习与交流，请勿转载与贩卖！
+
+*******************************/
+
+[rewrite_local]
+
+#!name=电子书包
+#!desc=解锁题目权限 + 解锁课程观看 + 解锁设备限制
+
+# 合并所有需要改写的URL为一条规则（通配符*已用.*表示）
+^https?:\/\/(exampass\.mvwchina\.com\/api\/examinationexercise\/apis\/exercises\/v2\/exercise\/list\/category|api\.imed\.org\.cn\/(books\/findBookList|books\/getAllPaperExamListByProductId|api\/article\/findCurrentPage|books\/v2|bindDevice)|school\.mvwchina\.com\/shop\/section\/getSectionListInfo).* url script-response-body https://raw.githubusercontent.com/svvff/Rewrite/main/ebook_unlock_all.js
 
 [mitm]
 hostname = exampass.mvwchina.com, api.imed.org.cn, school.mvwchina.com
 
-/*
-#!name=电子书包-功能解锁合集
-#!desc=解锁题目权限、课程观看、设备限制
-*/
+*******************************/
 
-function unlockQuiz(body) {
-    let modified = body;
-    modified = modified.replace(/"isFreeTrial"\s*:\s*0\b/g, '"isFreeTrial":1');
-    modified = modified.replace(/"shelfStatus"\s*:\s*"?1"?\b/g, '"shelfStatus":"0"');
-    modified = modified.replace(/"isBuy"\s*:\s*0\b/g, '"isBuy":1');
-    modified = modified.replace(/"isRetail"\s*:\s*0\b/g, '"isRetail":1');
-    modified = modified.replace(/"studyStatus"\s*:\s*0\b/g, '"studyStatus":1');
-    modified = modified.replace(/"hideUnpurchased"\s*:\s*1\b/g, '"hideUnpurchased":0');
-    modified = modified.replace(/"buyStatus"\s*:\s*0\b/g, '"buyStatus":1');
-    return modified;
+    /*******************************
+脚本功能：电子书包——解锁题目权限 + 课程观看 + 设备限制
+*******************************/
+
+var obj = JSON.parse($response.body);
+
+// 定义各功能对应的URL正则（只匹配路径部分，因为域名已在rewrite中限定）
+const quiz = /exampass\.mvwchina\.com\/api\/examinationexercise\/apis\/exercises\/v2\/exercise\/list\/category|api\.imed\.org\.cn\/(books\/findBookList|books\/getAllPaperExamListByProductId|api\/article\/findCurrentPage|books\/v2)/;
+const course = /school\.mvwchina\.com\/shop\/section\/getSectionListInfo/;
+const device = /api\.imed\.org\.cn\/bindDevice/;
+
+// ① 解锁题目权限（递归修改JSON中所有需要改的字段）
+if (quiz.test($request.url)) {
+    function modifyQuiz(obj) {
+        if (!obj || typeof obj !== 'object') return;
+        for (var key in obj) {
+            var val = obj[key];
+            if (key === 'isFreeTrial' && val === 0) obj[key] = 1;
+            if (key === 'shelfStatus' && (val === 1 || val === '1')) obj[key] = "0";
+            if (key === 'isBuy' && val === 0) obj[key] = 1;
+            if (key === 'isRetail' && val === 0) obj[key] = 1;
+            if (key === 'studyStatus' && val === 0) obj[key] = 1;
+            if (key === 'hideUnpurchased' && val === 1) obj[key] = 0;
+            if (key === 'buyStatus' && val === 0) obj[key] = 1;
+            if (typeof val === 'object') modifyQuiz(val);
+        }
+    }
+    modifyQuiz(obj);
+    console.log("✅ 电子书包-题目权限：已解锁");
 }
-
-function unlockCourse(body) {
-    try {
-        let json = JSON.parse(body);
-        let modified = false;
-
-        function modifyFields(obj) {
-            if (!obj || typeof obj !== 'object') return;
-            if (Array.isArray(obj)) {
-                obj.forEach(item => modifyFields(item));
-                return;
-            }
-            let objModified = false;
-            if (obj.hasOwnProperty('free') && obj.free === 2) {
-                obj.free = 1;
-                objModified = true;
-            }
-            if (obj.hasOwnProperty('freeTime') && obj.freeTime === 0) {
-                obj.freeTime = 2147483647;
-                objModified = true;
-            } else if (!obj.hasOwnProperty('freeTime') && obj.hasOwnProperty('free')) {
-                obj.freeTime = 2147483647;
-                objModified = true;
-            }
-            if (objModified) modified = true;
-            for (let key in obj) {
-                if (obj.hasOwnProperty(key) && typeof obj[key] === 'object') {
-                    modifyFields(obj[key]);
-                }
-            }
+// ② 解锁课程观看
+else if (course.test($request.url)) {
+    function modifyCourse(obj) {
+        if (!obj || typeof obj !== 'object') return;
+        if (Array.isArray(obj)) {
+            for (var i = 0; i < obj.length; i++) modifyCourse(obj[i]);
+            return;
         }
-
-        modifyFields(json);
-        if (modified) {
-            return JSON.stringify(json);
+        if (obj.hasOwnProperty('free') && obj.free === 2) obj.free = 1;
+        if (obj.hasOwnProperty('freeTime') && obj.freeTime === 0) obj.freeTime = 2147483647;
+        else if (!obj.hasOwnProperty('freeTime') && obj.hasOwnProperty('free')) obj.freeTime = 2147483647;
+        for (var key in obj) {
+            if (typeof obj[key] === 'object') modifyCourse(obj[key]);
         }
-        return null;
-    } catch (e) {
-        return null;
+    }
+    modifyCourse(obj);
+    console.log("✅ 电子书包-课程观看：已解锁");
+}
+// ③ 解锁设备限制
+else if (device.test($request.url)) {
+    if (obj && typeof obj === 'object' && obj.hasOwnProperty('result') && obj.result === false) {
+        obj.result = true;
+        console.log("✅ 电子书包-设备限制：已解锁");
     }
 }
 
-function unlockDevice(body) {
-    let modified = body.replace(/"result"\s*:\s*false\b/g, '"result":true');
-    return modified !== body ? modified : null;
-}
-
-let url = $request.url;
-let body = $response.body;
-
-if (typeof body !== 'string') {
-    if (body && typeof body.toString === 'function') {
-        body = body.toString();
-    } else {
-        $done({});
-    }
-}
-
-let modifiedBody = null;
-
-if (url.includes('exampass.mvwchina.com') || url.includes('api.imed.org.cn')) {
-    modifiedBody = unlockQuiz(body);
-    if (modifiedBody) console.log("🎉 电子书包-题目权限: 解锁成功");
-} else if (url.includes('school.mvwchina.com/shop/section/getSectionListInfo')) {
-    modifiedBody = unlockCourse(body);
-    if (modifiedBody) console.log("🎉 电子书包-课程观看: 解锁成功");
-} else if (url.includes('api.imed.org.cn/bindDevice')) {
-    modifiedBody = unlockDevice(body);
-    if (modifiedBody) console.log("🎉 电子书包-设备限制: 解锁成功");
-}
-
-if (modifiedBody) {
-    $done({ body: modifiedBody });
-} else {
-    $done({});
-}
+$done({ body: JSON.stringify(obj) });
