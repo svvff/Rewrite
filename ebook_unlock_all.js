@@ -1,75 +1,84 @@
-#!name=电子书包
-#!desc=解锁题目权限 + 课程观看 + 设备限制
-
-[General]
-force-http-engine-hosts = %APPEND% exampass.mvwchina.com, api.imed.org.cn, school.mvwchina.com
-
-[Script]
-电子书包 = type=http-response, pattern=^https?:\/\/(exampass\.mvwchina\.com\/api\/examinationexercise\/apis\/exercises\/v2\/exercise\/list\/category|api\.imed\.org\.cn\/(books\/findBookList.*|books\/getAllPaperExamListByProductId.*|api\/article\/findCurrentPage.*|books\/v2.*|bindDevice.*)|school\.mvwchina\.com\/shop\/section\/getSectionListInfo.*), requires-body=1, script-path=https://raw.githubusercontent.com/svvff/Rewrite/main/ebook_unlock_all.js
-
-[MITM]
-hostname = %APPEND% exampass.mvwchina.com, api.imed.org.cn, school.mvwchina.com
-
 /*******************************
-电子书包：解锁题目权限 + 课程观看 + 设备限制
+
+脚本功能：电子书包——题目权限 + 课程观看 + 设备限制
+更新时间：2026-05-09
+使用说明：Surge / Quantumult X 可直接使用
+
+*******************************
+
+[rewrite_local]
+
+^https?:\/\/exampass\.mvwchina\.com\/api\/examinationexercise\/apis\/exercises\/v2\/exercise\/list\/category url script-response-body https://raw.githubusercontent.com/svvff/Rewrite/main/ebook_unlock_all.js
+^https?:\/\/api\.imed\.org\.cn\/books\/findBookList.* url script-response-body https://raw.githubusercontent.com/svvff/Rewrite/main/ebook_unlock_all.js
+^https?:\/\/api\.imed\.org\.cn\/books\/getAllPaperExamListByProductId.* url script-response-body https://raw.githubusercontent.com/svvff/Rewrite/main/ebook_unlock_all.js
+^https?:\/\/api\.imed\.org\.cn\/api\/article\/findCurrentPage.* url script-response-body https://raw.githubusercontent.com/svvff/Rewrite/main/ebook_unlock_all.js
+^https?:\/\/api\.imed\.org\.cn\/books\/v2.* url script-response-body https://raw.githubusercontent.com/svvff/Rewrite/main/ebook_unlock_all.js
+^https?:\/\/school\.mvwchina\.com\/shop\/section\/getSectionListInfo.* url script-response-body https://raw.githubusercontent.com/svvff/Rewrite/main/ebook_unlock_all.js
+^https?:\/\/api\.imed\.org\.cn\/bindDevice.* url script-response-body https://raw.githubusercontent.com/svvff/Rewrite/main/ebook_unlock_all.js
+
+[mitm]
+
+hostname = exampass.mvwchina.com, api.imed.org.cn, school.mvwchina.com
+
 *******************************/
 
-let body = $response.body;
-if (typeof body !== "string") {
-    body = body.toString();
+var body = $response.body;
+var url = $request.url;
+
+const exercise = /exampass\.mvwchina\.com\/api\/examinationexercise\/apis\/exercises\/v2\/exercise\/list\/category|api\.imed\.org\.cn\/books\/findBookList|api\.imed\.org\.cn\/books\/getAllPaperExamListByProductId|api\.imed\.org\.cn\/api\/article\/findCurrentPage|api\.imed\.org\.cn\/books\/v2/;
+
+const section = /school\.mvwchina\.com\/shop\/section\/getSectionListInfo/;
+
+const bindDevice = /api\.imed\.org\.cn\/bindDevice/;
+
+if (exercise.test(url)) {
+  body = body
+    .replace(/"isFreeTrial"\s*:\s*0\b/g, '"isFreeTrial":1')
+    .replace(/"shelfStatus"\s*:\s*"?1"?\b/g, '"shelfStatus":"0"')
+    .replace(/"isBuy"\s*:\s*0\b/g, '"isBuy":1')
+    .replace(/"isRetail"\s*:\s*0\b/g, '"isRetail":1')
+    .replace(/"studyStatus"\s*:\s*0\b/g, '"studyStatus":1')
+    .replace(/"hideUnpurchased"\s*:\s*1\b/g, '"hideUnpurchased":0')
+    .replace(/"buyStatus"\s*:\s*0\b/g, '"buyStatus":1');
 }
 
-let url = $request.url;
+if (section.test(url)) {
+  var objc = JSON.parse(body);
 
-// 1. 题目权限解锁 (字符串替换)
-if (url.includes("exampass.mvwchina.com") ||
-    (url.includes("api.imed.org.cn") && !url.includes("/bindDevice"))) {
-    let newBody = body;
-    newBody = newBody.replace(/"isFreeTrial":0/g, '"isFreeTrial":1');
-    newBody = newBody.replace(/"shelfStatus":1/g, '"shelfStatus":"0"');
-    newBody = newBody.replace(/"shelfStatus":"1"/g, '"shelfStatus":"0"');
-    newBody = newBody.replace(/"isBuy":0/g, '"isBuy":1');
-    newBody = newBody.replace(/"isRetail":0/g, '"isRetail":1');
-    newBody = newBody.replace(/"studyStatus":0/g, '"studyStatus":1');
-    newBody = newBody.replace(/"hideUnpurchased":1/g, '"hideUnpurchased":0');
-    newBody = newBody.replace(/"buyStatus":0/g, '"buyStatus":1');
-    if (newBody !== body) {
-        body = newBody;
+  function modifyFields(obj) {
+    if (!obj || typeof obj !== "object") return;
+
+    if (Array.isArray(obj)) {
+      obj.forEach(item => modifyFields(item));
+      return;
     }
-}
-// 2. 课程观看解锁 (JSON 递归修改)
-else if (url.includes("school.mvwchina.com/shop/section/getSectionListInfo")) {
-    try {
-        let obj = JSON.parse(body);
-        let changed = false;
-        function fix(obj) {
-            if (!obj || typeof obj !== "object") return;
-            if (Array.isArray(obj)) {
-                obj.forEach(fix);
-                return;
-            }
-            if (obj.free === 2) { obj.free = 1; changed = true; }
-            if (obj.freeTime === 0) { obj.freeTime = 2147483647; changed = true; }
-            if (obj.hasOwnProperty("free") && !obj.hasOwnProperty("freeTime")) {
-                obj.freeTime = 2147483647;
-                changed = true;
-            }
-            for (let k in obj) {
-                if (typeof obj[k] === "object") fix(obj[k]);
-            }
-        }
-        fix(obj);
-        if (changed) {
-            body = JSON.stringify(obj);
-        }
-    } catch(e) {}
-}
-// 3. 设备限制解锁 (字符串替换)
-else if (url.includes("api.imed.org.cn/bindDevice")) {
-    let newBody = body.replace(/"result":false/g, '"result":true');
-    if (newBody !== body) {
-        body = newBody;
+
+    if (obj.hasOwnProperty("free") && obj.free === 2) {
+      obj.free = 1;
     }
+
+    if (obj.hasOwnProperty("freeTime") && obj.freeTime === 0) {
+      obj.freeTime = 2147483647;
+    } else if (!obj.hasOwnProperty("freeTime") && obj.hasOwnProperty("free")) {
+      obj.freeTime = 2147483647;
+    }
+
+    for (let key in obj) {
+      if (typeof obj[key] === "object") {
+        modifyFields(obj[key]);
+      }
+    }
+  }
+
+  modifyFields(objc);
+  body = JSON.stringify(objc);
 }
 
-$done({ body: body });
+if (bindDevice.test(url)) {
+  body = body.replace(
+    /"result"\s*:\s*false\b/g,
+    '"result":true'
+  );
+}
+
+$done({ body });
