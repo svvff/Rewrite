@@ -5,7 +5,7 @@
 #!name=Anymo解锁
 #!desc=解锁永久VIP + 非会员数量限制
 
-*******************************/
+*******************************
 
 [rewrite_local]
 ^https?:\/\/file\.ankichinas\.cn\/server\/api\/user\/vipInfo$ url script-response-body https://raw.githubusercontent.com/svvff/Rewrite/main/anki_unlock_all.js
@@ -19,7 +19,10 @@ hostname = file.ankichinas.cn
 var body = $response.body;
 var url = $request.url;
 
-if (url.indexOf('/user/vipInfo') !== -1) {
+const vipInfo = /file\.ankichinas\.cn\/server\/api\/user\/vipInfo/;
+const getInfo = /file\.ankichinas\.cn\/server\/api\/user\/getInfo/;
+
+if (vipInfo.test(url)) {
     try {
         var obj = JSON.parse(body);
         if (obj.data) {
@@ -32,7 +35,7 @@ if (url.indexOf('/user/vipInfo') !== -1) {
     } catch(e) {}
 }
 
-if (url.indexOf('/user/getInfo') !== -1) {
+if (getInfo.test(url)) {
     try {
         var obj = JSON.parse(body);
         if (obj.data) {
