@@ -64,7 +64,7 @@ if (getInfo.test($request.url)) {
         "phone": "18888888888",
         "nickname": "永久会员",
         "sign": "已解锁所有功能",
-        "avatar": "https://example.com/avatar.png",
+        "avatar": "https://anki-resource.oss-cn-shenzhen.aliyuncs.com/user/202605/301002/49479f918048c01506fa02e718c7e8f3.jpeg",
         "coin": 999999,
         "org": null,
         "vip": {
