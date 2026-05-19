@@ -26,32 +26,65 @@ const vipInfo = /\/user\/vipInfo$/;
 const getInfo = /\/user\/getInfo$/;
 
 if (vipInfo.test($request.url)) {
-    if (body.data) {
-        body.data.isVip = true;
-        body.data.isForever = true;
-        body.data.vipDay = 99999;
-        body.data.expireDay = "2099-12-31";
-    }
+    // 直接覆盖 data 字段
+    body.data = {
+        "pkg": [
+            {
+                "id": "unrestricted_date_vip",
+                "money": 0,
+                "desc": "永久会员",
+                "desc2": "已解锁",
+                "day": 99999,
+                "size": 9999,
+                "coin": 9999,
+                "activityEndAt": "",
+                "originMoney": 0
+            }
+        ],
+        "isVip": true,
+        "vipDay": 99999,
+        "expireDay": "2099-12-31",
+        "isForever": true,
+        "useSize": "0B",
+        "totalSize": "1024TB",
+        "ambassador": null,
+        "hongbao": null,
+        "vipDiscount": {
+            "enable": true,
+            "yj": 0.01,
+            "temp": 0.01,
+            "testIp": []
+        }
+    };
 }
 
 if (getInfo.test($request.url)) {
-    if (body.data) {
-        if (body.data.vip) {
-            body.data.vip.isForever = true;
-            body.data.vip.openVip = true;
-            body.data.vip.vipAvailable = true;
-            body.data.vip.vipEndAt = "2099-12-31";
-        }
-        if (body.data.nonmember) {
-            body.data.nonmember.decksCount = 999999;
-            body.data.nonmember.notesCount = 999999;
-            body.data.nonmember.customStudy = 999999;
-            body.data.nonmember.exportCard = 999999;
-            body.data.nonmember.appDataSync = true;
-            body.data.nonmember.batchCard = true;
-            body.data.nonmember.coverPic = true;
-        }
-    }
+    // 直接覆盖 data 字段
+    body.data = {
+        "phone": "18888888888",
+        "nickname": "永久会员",
+        "sign": "已解锁所有功能",
+        "avatar": "https://example.com/avatar.png",
+        "coin": 999999,
+        "org": null,
+        "vip": {
+            "isForever": true,
+            "openVip": true,
+            "vipEndAt": "2099-12-31",
+            "vipAvailable": true
+        },
+        "nonmember": {
+            "appDataSync": true,
+            "decksCount": 999999,
+            "batchCard": true,
+            "coverPic": true,
+            "notesCount": 999999,
+            "customStudy": 999999,
+            "exportCard": 999999
+        },
+        "userId": "unlimited_user",
+        "registerSuccess": 1
+    };
 }
 
 $done({body : JSON.stringify(body)});
